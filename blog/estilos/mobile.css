@@ -1,0 +1,18 @@
+
+@media only screen and (max-width: 600px) {
+    h1{
+        font-size: x-large;
+    }
+    
+    main{
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    } 
+
+    ul{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
