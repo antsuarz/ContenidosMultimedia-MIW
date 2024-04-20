@@ -1,0 +1,14 @@
+{
+  "name": "mywebsocketserver",
+  "version": "1.0.0",
+  "description": "my first websocket uo270543",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "uo270543 Antonio Suarez Crespo",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
