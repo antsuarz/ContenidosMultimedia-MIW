@@ -1,0 +1,12 @@
+body {
+    background-color: #adf79e;
+    width: 960px;
+    margin: 0 auto;
+    font-family: Verdana;
+    }
+
+#canvas{
+    background-color: white;
+    border-width: 2px;
+    border-color: black;
+}
