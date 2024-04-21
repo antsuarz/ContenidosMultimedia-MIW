@@ -1,3 +1,5 @@
+var figures = 0;
+
 if (window.WebSocket) {
     console.log("WebSockets supported.");
 }
@@ -12,7 +14,12 @@ function init() {
     canvas = new fabric.Canvas('canvas');
     addCircle.addEventListener('click', addCircleHandler);
     addRectangle.addEventListener('click', addRectangleHandler);
-    addTriangle.addEventListener('click', addTriangleHandler); 
+    addTriangle.addEventListener('click', addTriangleHandler);
+
+    canvas.on('object:modified', function (event) {
+        var modifiedObject = event.target;
+        manejarMovimiento(modifiedObject);
+    });
 }
 
 function initServer() {
@@ -21,6 +28,11 @@ function initServer() {
     websocket.onmessage = onMessageFromServer;
 }
 
+
+
+function manejarMovimiento(object) {
+    obj = adaptarObjeto(object.type, object);
+}
 function connectionOpen() {
     websocket.send('connection open');
 
@@ -29,29 +41,69 @@ function connectionOpen() {
 function onMessageFromServer(message) {
     console.log('received: ' + message);
     if (isJson(message.data)) {
-        var info = JSON.parse(message.data);
-        console.log("got data from server"); 
-        console.log(info);
-        info.forEach(info => {
-            addObject(info.figura,info.obj);
+        var info = JSON.parse(message.data); 
+        info.figures.forEach(info => {
+            addObject(info.figura, info.obj);
         });
-        
+        console.log("clients: "+info.clients);
+        document.getElementById('clientCount').textContent = info.clients;
     }
 }
 
-function addObject(type,obj){
-    switch(type){
+function addObject(type, obj) {
+    switch (type) {
         case 'Rectangle':
             canvas.add(new fabric.Rect(obj));
+            figures++;
             break;
         case 'Circle':
             canvas.add(new fabric.Circle(obj));
+            figures++;
             break;
         case 'Triangle':
             canvas.add(new fabric.Triangle(obj));
+            figures++;
             break;
         default:
             console.log("shape not allowed");
+    }
+}
+
+function adaptarObjeto(type, objeto) {
+    console.log(objeto);
+    switch (type) {
+        case 'rect':
+            obj = {
+                id: objeto.id,
+                top: objeto.top,
+                left: objeto.left,
+                width: objeto.width,
+                height: objeto.height,
+                fill: objeto.fill,
+            }
+            sendObject('Rectangle', obj);
+            break;
+        case 'triangle':
+            obj = {
+                id: objeto.id,
+                top: objeto.top,
+                left: objeto.left,
+                width: objeto.width,
+                height: objeto.height,
+                fill: objeto.fill,
+            }
+            sendObject('Triangle', obj);
+            break;
+        case 'circle':
+            obj = {
+                id: objeto.id,
+                top: objeto.top,
+                left: objeto.left,
+                radius: objeto.radius,
+                fill: objeto.fill,
+            }
+            sendObject('Circle', obj);
+            break;
     }
 }
 function testWebSocket() {
@@ -76,7 +128,7 @@ function onMessage(evt) {
 function onError(evt) {
     writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
 }
-function doSend(message) { 
+function doSend(message) {
     websocket.send(message);
 }
 function writeToScreen(message) {
@@ -96,6 +148,7 @@ function isJson(str) {
 
 function addCircleHandler() {
     var obj = {
+        id: figures,
         top: 100,
         left: 100,
         radius: 40,
@@ -106,6 +159,7 @@ function addCircleHandler() {
 }
 function addRectangleHandler() {
     var obj = {
+        id: figures,
         top: 100,
         left: 100,
         width: 80,
@@ -118,6 +172,7 @@ function addRectangleHandler() {
 
 function addTriangleHandler() {
     var obj = {
+        id: figures,
         top: 100,
         left: 100,
         width: 80,
@@ -128,9 +183,12 @@ function addTriangleHandler() {
     sendObject('Triangle', obj);
 }
 
-function sendObject(type,obj){
+function sendObject(type, obj) {
     var info = {}
-    info.obj = obj; 
+    info.obj = obj;
     info.figura = type;
+    info.id = obj.id;
     doSend(JSON.stringify(info));
 }
+
+
