@@ -22,6 +22,7 @@ header h2 {
     font-size: small;
 }
 
+
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -103,6 +104,13 @@ section {
     margin: 20px;
     padding: 20px;
 }
+section section{
+    background-color: #dafce5; 
+}
+
+section section img{
+    max-width: 50%; 
+}
 
 footer {
     position: fixed;
@@ -110,11 +118,11 @@ footer {
     width: 100%;
     background-color: #55c77b;
     color: #000000;
-    padding: 0.5rem;
+    padding: 0.5rem 0rem 0.5rem 0rem;
     text-align: center;
 }
 
 iframe{
     width: 100%;
-    min-height: 500px;
+    min-height: 600px;
 }

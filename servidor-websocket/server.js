@@ -1,7 +1,6 @@
 var WebSocketServer = require('ws').Server;
 wss = new WebSocketServer({ port: 9001 });
 var figures = [];
-var users = 0;
 
 wss.on('connection', function connection(ws) { 
     info = {
@@ -36,6 +35,7 @@ function checkFigure(id){
     }
     return false;
 }
+
 function isJson(str) {
     try {
         JSON.parse(str);

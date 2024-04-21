@@ -16,22 +16,152 @@
     <nav>
         <ul>
             <li><a href="./index.html">Inicio</a></li>
-            <li><a href="./dibujo/canvas.html">Dibujo Colaborativo</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="./dibujo/canvas.html">Dibujo Colaborativo</a></li> 
         </ul>
     </nav>
 </header>
 
 <main>
     <section>
+        <h2>Diseño de la Web</h2>
+        <p>El blog se compone de dos tipos distintos de página:</p>
+        <ul>
+            <li>La Página Principal</li>
+            <li>Las Entradas del Blog</li>
+        </ul>
+        
+        <section>
+            <h3>Elementos Comunes: Header y Footer</h3>
+            <p>El Header y el Footer son elementos comunes a todos los tipos de página de la web.</p>
+            <p>El <b>Header</b> contiene la barra de navegación y el encabezado de cada página.</p>
+            <p>El <b>Footer</b> contiene mi información así como el nombre de la asignatura.</p>
+        </section>
+        <p>En cuanto a la composición de los cuerpos de las páginas, su principal diferencia es el layout utilizado. Se entrará en detalle más adelante.</p>
+        <section>
+            <h3>Decisiones de Diseño</h3> 
+            <p>Todos los objetos clicables dan retroalimentación cuando se pasa el raton por encima, aumentando su tamaño:</p>
+            <div>
+                <img src="./recursos/animacion.png" alt="animacion de la barra de navegación">
+            </div>
+            <p>Las secciones tienen un sutil sombreado para darles volumen y separarlas del fondo, haciendo más sencillo distinguir visualmente las partes de la página.</p>
+            <p>El Footer es de un tono más claro con las letras en negro, para diferenciarlo del encabezado cuando se ven los dos a la vez.</p>
+        </section>
+    </section>
+    <section>
+        <h3>Archivos y Directorios</h3>
+        <p>Dentro del blog encontramos varios archivos y directorios, que componen las funcionalidades requeridas.</p>
+        <section>
+            <h3>Archivos HTML del blog</h3>
+            <p>Son cuatro archivos HTML, que componen el blog con sus entradas:</p>
+            <div>
+                <img src="./recursos/html_directory.png" alt="archvios html del blog">
+            </div>
+            <ul>
+                <li><b>index.html</b>: es la página principal.</li>
+                <li><b>blog-dibujo.html</b>: es la entrada que describe como se ha hecho el ejercicio de dibujo colaborativo.</li>
+                <li><b>blog-diseño.html</b>: es esta página.</li>
+                <li><b>blog-podcast.html</b>: es la entrada que describe como se ha hecho el ejercicio en grupo.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Directorio /dibujo</h3>
+            <p>Contiene tres archivos, con la funcionalidad del cliente del WebSocket te dibujo colaborativo:</p>
+            <div>
+                <img src="./recursos/dibujo_directory.png" alt="directorio dibujo, contiene un canvas.html, un script.js y un style.css">
+            </div>
+        </section>
+        <section>
+            <h3>Directorio /estilos</h3>
+            <p>Contiene tres archivos, las hojas de estilo que utiliza la web:</p>
+            <div>
+                <img src="./recursos/estilos_directory.png" alt="directorio estilos, contiene un hojas de estilo para la web">
+            </div>
+            <p>Estos archivos son:</p>
+            <ul>
+                <li><b>main_style.css</b>: es la hoja de estilo principal.</li>
+                <li><b>entry.css</b>: sobreescribe y añade algunos parametros en los estilos para las entradas del blog.</li>
+                <li><b>mobile.css</b>: es la hoja de estilos donde se guardan los cambios para pantallas pequeñas.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Directorio /presentaciones</h3>
+            <p>Contiene los directorios y archivos para hacer funcioinar Reveal.js, así como la presentación de como se realizó el primer ejercicio:</p>
+            <div>
+                <img src="./recursos/presentacion_directory.png" alt="directorio presentaciones, contiene las presentaciones en reveal.js">
+            </div>
+        </section>
+    </section>
+    <section>
         <h2>Layouts</h2>
+        <section>
+            <h3>Página Principal</h3>
+            <p>Para el cuerpo de la página principal he escogido un grid layout de dos columnas, que hará que las entradas se vayan agrupando en la parte central de la pantalla.</p>
+            <p>Esto beneficia la navegación entre entradas, ya que entrán más a la vez en pantalla, que si fuesen una detras de otra. Además, con la poca información que contienen, si saliesen una encima de la otra, daria una gran sensación de vacio y espacio desaprovechado. </p>
+            <div>
+                <img src="./recursos/grid_index.png" alt="layout de la pagina principal">
+            </div>
+        </section>
+
+        <section>
+            <h3>Entradas del Blog</h3>
+            <p>Para el cuerpo de las entradas he escogido un flex layout ya que en este caso las secciones van a contener mucha información e imagenes, y me interesa que estén todas organizadas en una sola columna.</p>
+            <p>Gracias a flex, las secciones son además sensibles a cambios de tamaño de la pantalla, sin deformar sus contenidos.</p>
+            <div>
+                <img src="./recursos/flex_entry.png" alt="layout de las entradas">
+            </div>
+        </section>
+
+        <section>
+            <h3>Layouts para Pantallas Pequeñas</h3>
+            <p>El grid layout de la página principal se sustituye por un flex, como se ve en el siguiente apartado.</p>
+        </section>
+        
     </section>
     <section>
-        <h2>Diseño</h2>
-    </section>
-    <section>
-        <h2>Presentación en Reveal.JS</h2>
-        <iframe src="./presentaciones/presentacion-blog.html"></iframe>
+        <h2>Diseño Responsive</h2>
+        <p>Se ha tenido en cuenta que la web sea capaz de responder a cambios de tamaño de pantalla, utilizando los layouts mencionados en el apartado anterior.</p>
+        <p>Se ha utilizado mediaquery para realizar estas modificaciones. Todas se encuentran en el <b>mobile.css</b></p>
+        <section>
+            <h3>Pantalla Principal</h3>
+            <p>En este video se muestra como se pasa del grid layout inicial a un flex layout que hace más visibles y manejables los elementos del menú.</p>
+            <div>
+                <video controls loop muted>
+                    <source src="./recursos/video_responsive_index.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        <section>
+            <h3>Entradas del Blog</h3>
+            <p>En el caso de las entradas del blog, el reescalamiento de la pantalla busca que todos los elementos contenidos en las secciones encajen bien.</p>
+            <div>
+                <video controls loop muted>
+                    <source src="./recursos/video_responsive_page.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <section>
+            <h3>Otros elementos</h3>
+            <p>Entre los elementos comunes de la web que son alterados al reescalar la pantalla encontramos:</p>
+            <ul>
+                <li>El titulo H1, cuyo tamaño se adapta para que se vea mejor en pantallas más pequeñas</li>
+                <li>Las Listas, que se reorganizan para que no se solapen</li>
+                <li>La imagenes, para que se vean con un tamaño acorde a la pantalla.</li>
+                <li>El Footer, para que se coloque al fondo de la pantalla y haya que "hacer scroll" para verlo.</li>
+            </ul>
+            
+        </section>
+
+        <section>
+            <h3>Navegadores</h3>
+            <p>Para desarrollar el blog he utilizado dos navegadores:</p>
+            <ul>
+                <li>Firefox: Para el desarrollo</li>
+                <li>Chrome: Para probar las distintas páginas, ya qeu es un navegador muy utilizado</li>
+                <li>Opera GX: Porque Opera es un navegador problemático con algunos componentes html.</li>
+            </ul>
+        </section>
+        
     </section>
 </main>
 

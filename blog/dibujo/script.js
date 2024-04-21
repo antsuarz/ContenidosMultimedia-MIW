@@ -31,7 +31,7 @@ function initServer() {
 
 
 function manejarMovimiento(object) {
-    obj = adaptarObjeto(object.type, object);
+    adaptarObjeto(object.type, object);
 }
 function connectionOpen() {
     websocket.send('connection open');

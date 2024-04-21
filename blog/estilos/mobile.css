@@ -11,8 +11,34 @@
         padding-right: 1rem;
     } 
 
-    ul{
+    nav ul{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
+    main ul{
+        display: flex;
+        flex-direction: column; 
+    }
+
+    div ul{
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        margin-left: 1rem;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+    }
+
+    div ul li{
+        text-decoration: none;
+    }
+    footer {
+        position: relative;
+    }
+
+    section section img{
+        max-width: 100%;
+    }
+    
 }

@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/beige.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,8 +16,175 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Dibujo Colaborativo</h1>
+					<h2>Con WebSocket y FabricJs.</h2>
+					<h3>Antonio Suárez Crespo</h3>
+				</section>
+				<section>
+					<section>
+						<h2>Qué es FabricJs.</h2>
+						<p>Es una librería de JavaScript para implementar un lienzo interactivo.</p>
+					</section>
+					<section>
+						<p>Cuenta con documentación y demostraciones de uso.</p>
+						<a href ="http://fabricjs.com/demos/"> Link a las Demos</a>
+					</section> 
+				</section>
+				<section>
+					<section>
+						<h2>Programando la Conexión cliente-servidor</h2>
+						<p>Cómo hacer un dibujo Colaborativo</p>
+					</section>
+					<section>
+						<h3>Paso 1 - Crea el Servidor</h3>
+						<p>Para ello utilicé node y npm</p>
+						<div style="display: grid; grid-template-columns: 1fr 2fr;">
+							<div style="display: flex; flex-direction: column; margin-right: 2rem;">
+								<img src="../recursos/node.png" alt="Logo Node"> 
+								<img src="../recursos/npm.png" alt="Logo Npm"> 
+							</div>
+							<img src="../recursos/ws-1.png" alt="Creación del servidor con Node"> 
+						</div>
+						
+					</section>
+					<section>
+						<h3>Paso 2 - Prueba que arranque correctamente</h3>
+						<p>Para ello utilicé node y npm</p>
+						<div>
+							<img src="../recursos/ws-2.png" alt="Prueba de arranqeu del servidor" style="max-width: 80%;"> 
+						</div>
+					</section>
+					<section> 
+						<h3>Paso 3 - Prueba la conexión</h3>
+						<p>Conectandome al puerto 9091 pude verificar que el servidor estaba escuchando</p>
+						<div>
+							<img src="../recursos/ws-3.png" alt="Prueba de Conexion al Servidor" style="max-width: 80%;"> 
+						</div>
+					</section>
+					<section> 
+						<h3>Paso 4 - Crear el Cliente</h3>
+						<p>Un cliente básico para probar la funcionalidad</p>
+						<div>
+							<img src="../recursos/basicclient.png" alt="Código html inicial" style="max-width: 80%;"> 
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Programando el Cliente</h2>
+						<p>Funciones más importantes del cliente</p>
+					</section>
+					
+					<section>
+						<h3>Inicio de Conexión</h3>
+						<p>Preparamos al cliente para recibir las figuras y el número de clientes conectados al servidor</p>
+						<div style="display: grid; grid-template-columns: 1fr 1fr;">
+							<img src="../recursos/iniciar_canvas.png" alt="Funcion Inicial"> 
+							<img src="../recursos/iniciar_canvas_2.png" alt="Funcion para añadir los elementos del servidor al canvas"> 
+						</div>
+					</section>
+					<section>
+						<h2>Añadir Figuras - 1</h2>
+						<p>En primer lugar hay que crear la figura asociada al botón correspondiente, en este caso el circulo</p>
+						<div>
+							<img src="../recursos/f1.png" alt="Crea un circulo"> 
+						</div>
+						<p>Una vez creado el circulo, hay que añadirlo al canvas</p>
+					</section>
+					<section>
+						<h2>Añadir Figuras - 2</h2>
+						<p>Para ello, tenemos un Switch que controla el tipo de figura que viene:</p>
+						<div>
+							<img src="../recursos/f2.png" alt="Función  qeu añade figuras al canvas"> 
+						</div>
+						<p>Se hace aquí el control de los ids para cada figura.</p>
+					</section>
+					<section>
+						<h2>Modificar Figuras - 1</h2>
+						<p>Una figura creada puede moverse por el lienzo</p>
+						<div>
+							<img src="../recursos/movimiento_1.png" alt="Funcion para mover figuras">
+							<img src="../recursos/movimiento_2.png" alt="Funcion para mover figuras"> 
+						</div>
+						<p>Esto se controla a traves del evento 'object:modified', el cuál desencadena la acción</p>
+					</section>
+					<section>
+						<h2>Modificar Figuras - 2</h2>
+						<p>Una vez desencadenado el evento, entra en juego una función muy similar a la de añadir figuras, que actualiza su estado:</p>
+						<div>
+							<img src="../recursos/movimiento_3.png" alt="Funcion para mover figuras"> 
+						</div>
+					</section>
+					<section>
+						<h2>Enviar Figuras - 1</h2>
+						<p>El último paso es enviar la información de las figuras al servidor.</p>
+						<p>Este paso es igual, tanto para el añadido como la modificación de figuras.</p>
+						<p>La información se envia en formato JSON.</p>
+					</section> 
+					<section>
+						<h2>Enviar Figuras - 2</h2>
+						<p>Para ello creo un objeto info, que contendra el id, el tipo de figura y su información.</p>
+						<div>
+							<img src="../recursos/enviar.png" alt="Funcion para enviar las figuras al servidor"> 
+						</div>
+						<p>Esto garantiza que lleguen las figuras de la misma forma siempre en el servidor, y facilita la recuperación de información.</p>
+					</section> 
+				</section>
+				<section>
+					<section>
+						<h2>Programando el Servidor</h2>
+						<p>Funciones más importantes del servidor</p>
+					</section>
+					<section>
+						<h2>Suministrar información a los clientes</h2>
+						<p>Cuando se establece la conexión, el servidor envia las figuras que tiene y el número de clientes</p>
+						<div>
+							<img src="../recursos/server_1.png" alt="Funcion para enviar las figuras y clientes al cliente"> 
+						</div>
+					</section>
+					<section>
+						<h2>Comprobar los mensajes</h2>
+						<p>Los mensajes pueden implicar:</p>
+						<ul>
+							<li>Crear Figura</li>
+							<li>Editar figura</li>
+						</ul>
+						<div>
+							<img src="../recursos/server_2.png" alt="Funcion para enviar las figuras y clientes al cliente"> 
+						</div>
+					</section>
+					<section>
+						<h2>Mensaje de Creación de Figura</h2>
+						<p>Son aquellos que contienen una figura que no existe en la lista.</p>
+						<p>Para comprobarlo realizamos la comprobación del id enviado desde el cliente, con los ids de las figuras guardadas:</p>
+						<div>
+							<img src="../recursos/server_3.png" alt="Funcion para añadir las figuras a la lista"> 
+						</div>
+						<p>Posteriormente, se añade la figura recibida.</p>
+					</section>
+					<section>
+						<h2>Mensaje de Edición de Figura</h2> 
+						<p>Si la función anterior retorna True, quiere decir que es una figura existente.</p>
+						<p>Recorremos la lista de figuras y la modificamos.</p>
+						<div>
+							<img src="../recursos/server_4.png" alt="Funcion para editar las figuras de la lista"> 
+						</div>
+					</section>
+					
+				</section>
+				<section>
+					<h2>Uso entre varios clientes</h2> 
+					<p>Los cambios en las figuras son visibles para todos los clientes que estén conectados, con algunas limitaciones:</p>
+					<ul>
+						<li>En caso de creación simultanea, revalece la figura que llega antes al servidor</li>
+						<li>La edición soportada es solo relativa a la posición de las figuras, no se ha implementado el cambio de tamaño</li>
+					</ul>
+					 
+				</section>
+				<section>
+					<h2>Te recomiendo probar la herramienta o ver el video posteado más arriba</h2> 
+				</section>
 			</div>
 		</div>
 
