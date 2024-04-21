@@ -190,5 +190,3 @@ function sendObject(type, obj) {
     info.id = obj.id;
     doSend(JSON.stringify(info));
 }
-
-

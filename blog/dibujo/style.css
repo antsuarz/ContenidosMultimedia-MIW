@@ -1,12 +1,37 @@
-body {
-    background-color: #adf79e;
-    width: 960px;
-    margin: 0 auto;
-    font-family: Verdana;
-    }
-
 #canvas{
     background-color: white;
-    border-width: 2px;
-    border-color: black;
+    border-width: 2px;  
+    border: 1px solid black; 
+}
+ 
+button {
+    margin: 5px;
+    padding: 10px 20px; 
+    background-color: #c4f1c3;;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #c4f1c3;
+    transform: scale(1.05);
+}
+
+div{  
+    display: flex; 
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+div div{
+    display: flex;
+    flex-direction: row;
+}
+
+h2{
+    text-align: center;
 }

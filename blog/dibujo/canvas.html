@@ -6,15 +6,38 @@
     <title>WebSocket Test</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="../estilos/main_style.css">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-    <p>Clientes: <span id="clientCount">0</span></p>
-    <button id="addCircle">Add Circle</button>
-    <button id="addRectangle">Add Rectangle</button>
-    <button id="addTriangle">Add Triangle</button>
-    <canvas id="canvas" width="1024" height="768"></canvas>
+    <header>
+        <h1>Dibujo Colaborativo</h1>
+        <h2>Antonio Suárez Crespo</h2>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="./canvas.html">Dibujo Colaborativo</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2>Clientes: <span id="clientCount">0</span></h2>
+    <div>
+        <div>
+            <button id="addCircle">Add Circle</button>
+            <button id="addRectangle">Add Rectangle</button>
+            <button id="addTriangle">Add Triangle</button>
+        </div>
+        <canvas id="canvas" width="600" height="400"></canvas>
+    </div>
+
+
+    <footer>
+        <p>Difusión de Contenidos Multimedia Vía Web - Master Universitario en Ingeniería Web</p>
+        <p>Antonio Suárez Crespo - UO270543</p>
+    </footer>
 </body>
 
 </html>
